@@ -4,191 +4,162 @@ using UnityEngine;
 
 public class DisassemblyManager : MonoBehaviour
 {
-    public GameObject[] partsToDisassemble; // Objects that are disassembled
-    public GameObject[] partsDisassembled;
-    public GameObject[] AdditionalStep; // Objects that appear after disassembling
+    public GameObject[] partsToDisassemble; // Objects to disassemble
+    public GameObject[] partsDisassembled; // Disassembled parts
+    public GameObject[] additionalSteps; // Additional objects for special steps
+    public GameObject[] stepCheckmarks; // Checkmarks for completed steps
+    public GameObject[] partDetails; // Detail objects to activate on part click
 
-    public GameObject Completescene;
+    public GameObject completeScene; // Complete scene object
 
-    public int currentStep = 0; // Track which step we are on
-    private int _additionstep = 0;
+    public int currentStep = 0; // Track the current step
+    private int _additionalStepIndex = 0;
 
     void Start()
     {
-        for (int i = 0; i < partsToDisassemble.Length; i++)
-        {
-            partsDisassembled[i].SetActive(false); // Disassembled parts are hidden
-
-            // Ensure outline component is disabled at the start
-            Outline outlineComponent = partsToDisassemble[i].GetComponent<Outline>();
-            if (outlineComponent != null)
-            {
-                outlineComponent.enabled = false; // Disable outline initially
-            }
-        }
-
-        // Enable the outline for the first object in the array (index 0)
-        Outline firstOutline = partsToDisassemble[0].GetComponent<Outline>();
-        if (firstOutline != null)
-        {
-            firstOutline.enabled = true; // Enable outline for the first part at the start
-            Debug.Log("Outline enabled for the first part: " + partsToDisassemble[0].name);
-        }
-        else
-        {
-            Debug.LogWarning(
-                "No outline component found on the first part: " + partsToDisassemble[0].name
-            );
-        }
+        InitializeParts();
+        EnableOutline(0); // Enable outline for the first part
+        HideAllCheckmarks(); // Ensure all checkmarks are hidden initially
+        HideAllDetails(); // Ensure all part details are hidden initially
     }
 
     void Update()
     {
-        // Check for mouse click and raycast to detect what part was clicked
-        if (Input.GetMouseButtonDown(0)) // Left mouse button click
+        if (Input.GetMouseButtonDown(0)) // Detect left-click
         {
-            Debug.Log("Mouse click detected");
+            DetectClick();
+        }
+    }
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+    void InitializeParts()
+    {
+        // Hide all disassembled parts and disable outlines
+        for (int i = 0; i < partsToDisassemble.Length; i++)
+        {
+            partsDisassembled[i].SetActive(false);
 
-            if (Physics.Raycast(ray, out hit))
+            Outline outline = partsToDisassemble[i].GetComponent<Outline>();
+            if (outline != null) outline.enabled = false;
+        }
+    }
+
+    void HideAllCheckmarks()
+    {
+        // Ensure all checkmarks are inactive at the start
+        foreach (var checkmark in stepCheckmarks)
+        {
+            checkmark.SetActive(false);
+        }
+    }
+
+    void HideAllDetails()
+    {
+        // Ensure all part detail objects are inactive at the start
+        foreach (var detail in partDetails)
+        {
+            detail.SetActive(false);
+        }
+    }
+
+    void DetectClick()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            for (int i = 0; i < partsToDisassemble.Length; i++)
             {
-                Debug.Log("Raycast hit object: " + hit.transform.gameObject.name);
-
-                // Check if the clicked object is part of the disassembly parts
-                for (int i = 0; i < partsToDisassemble.Length; i++)
+                if (hit.transform.gameObject == partsToDisassemble[i])
                 {
-                    if (hit.transform.gameObject == partsToDisassemble[i])
-                    {
-                        Debug.Log("Clicked on part: " + partsToDisassemble[i].name);
-                        ClickOnPart(i);
-                        break;
-                    }
+                    ClickOnPart(i);
+                    return;
                 }
-            }
-            else
-            {
-                Debug.Log("Raycast did not hit any object");
             }
         }
     }
 
-    // Method to enable outline for a selected part
     void EnableOutline(int partIndex)
     {
-        Debug.Log("Enabling outline for part: " + partsToDisassemble[partIndex].name);
-
-        // Disable all outlines first
-        for (int i = 0; i < partsToDisassemble.Length; i++)
+        // Disable all outlines
+        foreach (var part in partsToDisassemble)
         {
-            Outline outlineComponent = partsToDisassemble[i].GetComponent<Outline>();
-            if (outlineComponent != null)
-            {
-                outlineComponent.enabled = false; // Disable outline for all parts
-            }
+            Outline outline = part.GetComponent<Outline>();
+            if (outline != null) outline.enabled = false;
         }
 
         // Enable outline for the selected part
         Outline selectedOutline = partsToDisassemble[partIndex].GetComponent<Outline>();
-        if (selectedOutline != null)
-        {
-            selectedOutline.enabled = true; // Enable outline for the clicked part
-            Debug.Log("Outline enabled for: " + partsToDisassemble[partIndex].name);
-        }
-        else
-        {
-            Debug.LogWarning(
-                "No outline component found on: " + partsToDisassemble[partIndex].name
-            );
-        }
+        if (selectedOutline != null) selectedOutline.enabled = true;
     }
 
-    // Method to proceed to the next step of disassembly
     public void ClickOnPart(int partIndex)
     {
-        Debug.Log("Processing partIndex: " + partIndex);
-
-        if (partIndex == currentStep)
+        if (partIndex == currentStep) // Correct part clicked
         {
-            Debug.Log("Correct part clicked, proceeding with disassembly for step: " + currentStep);
-
-            // Handle specific steps
-
-
-            // Deactivate the clicked part
             partsToDisassemble[partIndex].SetActive(false);
-            Debug.Log("Deactivated part: " + partsToDisassemble[partIndex].name);
-
-            // Activate the corresponding disassembled part
             partsDisassembled[partIndex].SetActive(true);
-            Debug.Log("Activated disassembled part: " + partsDisassembled[partIndex].name);
-            if (currentStep == 2)
-            {
-                Debug.Log("Activating additional step object at index: " + _additionstep);
-                AdditionalStep[_additionstep].SetActive(true);
-                _additionstep++;
-                AdditionalStep[_additionstep].SetActive(false);
-                _additionstep++;
-            }
-            else if (currentStep == 5)
-            {
-                Debug.Log("Handling additional step object activation for step 6");
-                AdditionalStep[_additionstep].SetActive(false);
-                _additionstep++;
-                AdditionalStep[_additionstep].SetActive(true);
-                _additionstep++;
-            }
-            // Move to the next step
-            currentStep++;
-            Debug.Log("Moved to next step: " + currentStep);
 
-            // Enable the outline for the next part in the array, if available
-            if (currentStep < partsToDisassemble.Length)
-            {
-                EnableOutline(currentStep); // Enable outline for the next part
-            }
-            else if (currentStep == partsDisassembled.Length)
-            {
-                Completescene.SetActive(true);
-            }
-            else
-            {
-                Debug.Log("No more parts to highlight.");
-            }
-        }
-        else
-        {
-            Debug.Log("Clicked on incorrect part for the current step: " + currentStep);
+            ActivateCheckmark(currentStep); // Activate checkmark for this step
+            ShowDetail(partIndex); // Show corresponding detail for the part
+
+            currentStep++;
+            HandleAdditionalSteps();
+            CheckCompletion();
         }
     }
 
-    // Optional: Reset the disassembly process
+    void ShowDetail(int partIndex)
+    {
+        if (partIndex < partDetails.Length)
+        {
+            partDetails[partIndex].SetActive(true); // Show the detail object for the clicked part
+        }
+    }
+
+    void ActivateCheckmark(int step)
+    {
+        if (step < stepCheckmarks.Length)
+        {
+            stepCheckmarks[step].SetActive(true); // Show the checkmark for the completed step
+        }
+    }
+
+    void HandleAdditionalSteps()
+    {
+        // Activate additional steps based on the current step
+        if (currentStep == 2 || currentStep == 5)
+        {
+            additionalSteps[_additionalStepIndex].SetActive(true);
+            _additionalStepIndex++;
+            additionalSteps[_additionalStepIndex].SetActive(false);
+            _additionalStepIndex++;
+        }
+
+        if (currentStep < partsToDisassemble.Length)
+        {
+            EnableOutline(currentStep);
+        }
+    }
+
+    void CheckCompletion()
+    {
+        if (currentStep >= partsDisassembled.Length)
+        {
+            completeScene.SetActive(true); // Show complete scene
+        }
+    }
+
     public void ResetDisassembly()
     {
-        Debug.Log("Resetting disassembly process");
-
         currentStep = 0;
-        _additionstep = 0;
+        _additionalStepIndex = 0;
 
-        for (int i = 0; i < partsToDisassemble.Length; i++)
-        {
-            partsToDisassemble[i].SetActive(true); // Reset initial parts
-            partsDisassembled[i].SetActive(false); // Hide disassembled parts
+        // Reset all parts, details, and checkmarks
+        foreach (var part in partsToDisassemble) part.SetActive(true);
+        foreach (var disassembled in partsDisassembled) disassembled.SetActive(false);
+        foreach (var step in additionalSteps) step.SetActive(false);
+        HideAllCheckmarks(); // Hide all checkmarks
+        HideAllDetails(); // Hide all details
 
-            // Ensure outline component is disabled when resetting
-            Outline outlineComponent = partsToDisassemble[i].GetComponent<Outline>();
-            if (outlineComponent != null)
-            {
-                outlineComponent.enabled = false; // Disable outline
-            }
-        }
-
-        for (int i = 0; i < AdditionalStep.Length; i++)
-        {
-            AdditionalStep[i].SetActive(false); // Hide all additional steps
-        }
-
-        Debug.Log("Disassembly reset complete");
+        EnableOutline(0); // Enable outline for the first part
     }
 }
