@@ -61,13 +61,15 @@ public class DisassemblyManager : MonoBehaviour
             Debug.Log("Correct part clicked, proceeding with disassembly for step: " + currentStep);
 
             // Handle specific steps
-            if (currentStep == 3)
+            if (currentStep == 2)
             {
                 Debug.Log("Activating additional step object at index: " + _additionstep);
                 AdditionalStep[_additionstep].SetActive(true);
                 _additionstep++;
+                AdditionalStep[_additionstep].SetActive(false);
+                _additionstep++;
             }
-            else if (currentStep == 6)
+            else if (currentStep == 5)
             {
                 Debug.Log("Handling additional step object activation for step 6");
                 AdditionalStep[_additionstep].SetActive(false);
