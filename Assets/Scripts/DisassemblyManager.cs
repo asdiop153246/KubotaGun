@@ -8,6 +8,8 @@ public class DisassemblyManager : MonoBehaviour
     public GameObject[] partsDisassembled;
     public GameObject[] AdditionalStep; // Objects that appear after disassembling
 
+    public GameObject Completescene;
+
     public int currentStep = 0; // Track which step we are on
     private int _additionstep = 0;
 
@@ -145,6 +147,10 @@ public class DisassemblyManager : MonoBehaviour
             if (currentStep < partsToDisassemble.Length)
             {
                 EnableOutline(currentStep); // Enable outline for the next part
+            }
+            else if (currentStep == partsDisassembled.Length)
+            {
+                Completescene.SetActive(true);
             }
             else
             {
