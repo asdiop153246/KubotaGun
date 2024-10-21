@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 83284686}
   - component: {fileID: 83284688}
   - component: {fileID: 83284689}
+  - component: {fileID: 83284690}
   m_Layer: 0
   m_Name: BoltGroupPart.002
   m_TagString: Untagged
@@ -393,6 +394,24 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &83284690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83284684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee72b9023f9b4c4189fdd70657be6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  rotateOnY: 1
+  rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 40
+  maxZoom: 80
 --- !u!1 &103680170
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,8 +593,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1450609, y: 0.0662483, z: 0.058582377}
-  m_Center: {x: 0, y: 0, z: 0.0000000018626451}
+  m_Size: {x: 0.2595532, y: 0.7060458, z: 0.6454759}
+  m_Center: {x: 0.05724614, y: -0.09563939, z: -0.07631971}
 --- !u!23 &285546024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -659,6 +678,7 @@ GameObject:
   - component: {fileID: 356305461}
   - component: {fileID: 356305460}
   - component: {fileID: 356305462}
+  - component: {fileID: 356305463}
   m_Layer: 0
   m_Name: BoltGroup1
   m_TagString: Untagged
@@ -759,6 +779,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.680058, y: 0.31992912, z: 0.26408067}
   m_Center: {x: 0.00000023841858, y: -0.00000047683716, z: -0.000000059604645}
+--- !u!114 &356305463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356305458}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &362759428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1236,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 0
   rotateOnX: 1
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!23 &476960210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1557,8 +1598,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6360079, y: 0.17646085, z: 0.17422733}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8545004, y: 0.17646086, z: 0.17422734}
+  m_Center: {x: 0.109246284, y: 0.000000032557928, z: -2.0243266e-14}
 --- !u!23 &608764653
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1774,7 +1815,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -2174,8 +2215,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5566087, y: 0.500635, z: 0.4837696}
-  m_Center: {x: -0.00000014901161, y: -0.18063888, z: 5.77545e-15}
+  m_Size: {x: 2.1011162, y: 0.8733421, z: 0.4837696}
+  m_Center: {x: -0.27225316, y: -0.36699232, z: 1.2141387e-14}
 --- !u!114 &1306220928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,8 +2289,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.044771433, y: 0.044771314, z: 0.087759435}
-  m_Center: {x: 0, y: -0.00000047683716, z: -0.00000012107193}
+  m_Size: {x: 0.19147167, y: 0.19392669, z: 0.55577964}
+  m_Center: {x: -0.0025256816, y: -0.004896326, z: -0.033494968}
 --- !u!23 &1368320667
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2395,6 +2436,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 1
   rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!1 &1463683946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,6 +2805,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 1
   rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!65 &1602812503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3034,8 +3081,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.044771433, y: 0.044771314, z: 0.087759435}
-  m_Center: {x: 0, y: 0, z: 0.000000117346644}
+  m_Size: {x: 0.09670567, y: 0.07082656, z: 0.16929695}
+  m_Center: {x: 0.015328247, y: -0.004489324, z: -0.040768635}
 --- !u!114 &1710020014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3581,8 +3628,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.44713733, y: 0.040173795, z: 0.038060606}
-  m_Center: {x: -2.1175824e-22, y: 0.00000011920929, z: -0.000000117346644}
+  m_Size: {x: 0.44713733, y: 0.5696866, z: 0.71742857}
+  m_Center: {x: 1.3653842e-14, y: -0.005633421, z: 0.046464335}
 --- !u!114 &2005119122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3901,7 +3948,7 @@ MonoBehaviour:
   - {fileID: 476960206}
   partsDisassembled:
   - {fileID: 8428312860529459680}
-  - {fileID: 8428312860529459680}
+  - {fileID: 2518797125157662598}
   - {fileID: 829430437628716337}
   - {fileID: 2061765364}
   - {fileID: 1463683946}
@@ -3918,6 +3965,7 @@ MonoBehaviour:
   - {fileID: 5641564400288040904}
   - {fileID: 1445825253}
   - {fileID: 2268878058863823906}
+  currentStep: 0
 --- !u!4 &2143554863
 Transform:
   m_ObjectHideFlags: 0
@@ -3951,7 +3999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &221342528576905085
 Transform:
   m_ObjectHideFlags: 0
@@ -4212,7 +4260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &855329023712701107
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4408,7 +4456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1662064406744047152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4427,7 +4475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1748026572180685381
 Transform:
   m_ObjectHideFlags: 0
@@ -4669,7 +4717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &2370153302854389704
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4696,7 +4744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &2531322463227115602
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4852,7 +4900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3875645352732553922
 Transform:
   m_ObjectHideFlags: 0
@@ -5165,7 +5213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &5410037829668378927
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5216,6 +5264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9030979875192244446}
+  - component: {fileID: 9030979875192244447}
   m_Layer: 0
   m_Name: M16A1Clean
   m_TagString: Untagged
@@ -5861,8 +5910,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6330578, y: 0.11868417, z: 0.2967102}
-  m_Center: {x: 0, y: 0.00000047683716, z: 0}
+  m_Size: {x: 1.6330578, y: 0.20929916, z: 0.4877937}
+  m_Center: {x: 0, y: 0.045307957, z: 0.09554176}
 --- !u!114 &7722607367964545827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5939,6 +5988,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 1
   rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!65 &7769125893569132259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6183,7 +6235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8081498980909411378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6316,7 +6368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8500801470441242520
 GameObject:
   m_ObjectHideFlags: 0
@@ -6335,7 +6387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8500801470441242521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6584,6 +6636,24 @@ Transform:
   - {fileID: 7975472457507972977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9030979875192244447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616725392143215312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee72b9023f9b4c4189fdd70657be6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  rotateOnY: 1
+  rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 40
+  maxZoom: 80
 --- !u!23 &9081604953567302916
 MeshRenderer:
   m_ObjectHideFlags: 0
