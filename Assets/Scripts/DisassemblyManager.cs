@@ -6,16 +6,18 @@ public class DisassemblyManager : MonoBehaviour
 {
     // Array to hold all parts to disassemble
     public GameObject[] partsToDisassemble;  // Objects that are disassembled
-    public GameObject[] partsDisassembled;   // Objects that appear after disassembling (e.g., slug on the table)
+    public GameObject[] partsDisassembled;
+    public GameObject[] AdditionalStep; // Objects that appear after disassembling (e.g., slug on the table)
 
-    private int currentStep = 0;  // Track which step we are on
+    private int currentStep = 0;
+    private int _additionstep = 0;// Track which step we are on
 
     void Start()
     {
         // Ensure only initial parts are active, the disassembled parts are inactive
         for (int i = 0; i < partsToDisassemble.Length; i++)
         {
-            partsToDisassemble[i].SetActive(true);   // Initial parts are visible
+            //partsToDisassemble[i].SetActive(true);   // Initial parts are visible
             partsDisassembled[i].SetActive(false);   // Disassembled parts are hidden
         }
     }
@@ -25,6 +27,19 @@ public class DisassemblyManager : MonoBehaviour
     {
         if (partIndex == currentStep)
         {
+            if (currentStep == 3)
+            {
+                AdditionalStep[_additionstep].SetActive(true);
+                _additionstep++;
+            }
+            else if (currentStep == 6) 
+            {
+                AdditionalStep[_additionstep].SetActive(false);               
+                _additionstep++;
+                AdditionalStep[_additionstep].SetActive(true);
+                _additionstep++;
+            }
+
             // Deactivate the clicked part
             partsToDisassemble[partIndex].SetActive(false);
 
