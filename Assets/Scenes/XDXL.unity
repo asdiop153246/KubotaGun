@@ -1121,6 +1121,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 0
   rotateOnX: 1
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!23 &476960210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1641,7 +1644,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1699,7 +1702,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2205,6 +2208,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 1
   rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!1 &1463683946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,6 +2538,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 1
   rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!65 &1602812503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5419,6 +5428,9 @@ MonoBehaviour:
   rotationSpeed: 5
   rotateOnY: 1
   rotateOnX: 0
+  zoomSpeed: 10
+  minZoom: 20
+  maxZoom: 80
 --- !u!65 &7769125893569132259
 BoxCollider:
   m_ObjectHideFlags: 0
