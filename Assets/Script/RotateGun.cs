@@ -60,7 +60,7 @@ public class RotateGun : MonoBehaviour
             if (rotateOnX)
             {
                 // Rotate the object based on vertical mouse movement (y-axis)
-                float rotationAmount = mouseDelta.y * rotationSpeed * Time.deltaTime;
+                float rotationAmount = mouseDelta.x * rotationSpeed * Time.deltaTime;
                 transform.Rotate(Vector3.right, rotationAmount);
             }
 

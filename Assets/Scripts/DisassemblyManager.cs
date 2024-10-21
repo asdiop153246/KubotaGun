@@ -60,11 +60,7 @@ public class DisassemblyManager : MonoBehaviour
                     if (hit.transform.gameObject == partsToDisassemble[i])
                     {
                         Debug.Log("Clicked on part: " + partsToDisassemble[i].name);
-
-                        // Enable the outline for the clicked part
-                        EnableOutline(i);
-
-                        ClickOnPart(i); // Call the disassembly method for the clicked part
+                        ClickOnPart(i);
                         break;
                     }
                 }
@@ -116,6 +112,15 @@ public class DisassemblyManager : MonoBehaviour
             Debug.Log("Correct part clicked, proceeding with disassembly for step: " + currentStep);
 
             // Handle specific steps
+
+
+            // Deactivate the clicked part
+            partsToDisassemble[partIndex].SetActive(false);
+            Debug.Log("Deactivated part: " + partsToDisassemble[partIndex].name);
+
+            // Activate the corresponding disassembled part
+            partsDisassembled[partIndex].SetActive(true);
+            Debug.Log("Activated disassembled part: " + partsDisassembled[partIndex].name);
             if (currentStep == 2)
             {
                 Debug.Log("Activating additional step object at index: " + _additionstep);
@@ -132,15 +137,6 @@ public class DisassemblyManager : MonoBehaviour
                 AdditionalStep[_additionstep].SetActive(true);
                 _additionstep++;
             }
-
-            // Deactivate the clicked part
-            partsToDisassemble[partIndex].SetActive(false);
-            Debug.Log("Deactivated part: " + partsToDisassemble[partIndex].name);
-
-            // Activate the corresponding disassembled part
-            partsDisassembled[partIndex].SetActive(true);
-            Debug.Log("Activated disassembled part: " + partsDisassembled[partIndex].name);
-
             // Move to the next step
             currentStep++;
             Debug.Log("Moved to next step: " + currentStep);
