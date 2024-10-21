@@ -4,25 +4,46 @@ using UnityEngine;
 
 public class DisassemblyManager : MonoBehaviour
 {
-    public GameObject[] partsToDisassemble;  // Objects that are disassembled
+    public GameObject[] partsToDisassemble; // Objects that are disassembled
     public GameObject[] partsDisassembled;
-    public GameObject[] AdditionalStep;      // Objects that appear after disassembling
+    public GameObject[] AdditionalStep; // Objects that appear after disassembling
 
-    private int currentStep = 0;             // Track which step we are on
+    private int currentStep = 0; // Track which step we are on
     private int _additionstep = 0;
 
     void Start()
     {
         for (int i = 0; i < partsToDisassemble.Length; i++)
         {
-            partsDisassembled[i].SetActive(false);   // Disassembled parts are hidden
+            partsDisassembled[i].SetActive(false); // Disassembled parts are hidden
+
+            // Ensure outline component is disabled at the start
+            Outline outlineComponent = partsToDisassemble[i].GetComponent<Outline>();
+            if (outlineComponent != null)
+            {
+                outlineComponent.enabled = false; // Disable outline initially
+            }
+        }
+
+        // Enable the outline for the first object in the array (index 0)
+        Outline firstOutline = partsToDisassemble[0].GetComponent<Outline>();
+        if (firstOutline != null)
+        {
+            firstOutline.enabled = true; // Enable outline for the first part at the start
+            Debug.Log("Outline enabled for the first part: " + partsToDisassemble[0].name);
+        }
+        else
+        {
+            Debug.LogWarning(
+                "No outline component found on the first part: " + partsToDisassemble[0].name
+            );
         }
     }
 
     void Update()
     {
         // Check for mouse click and raycast to detect what part was clicked
-        if (Input.GetMouseButtonDown(0))  // Left mouse button click
+        if (Input.GetMouseButtonDown(0)) // Left mouse button click
         {
             Debug.Log("Mouse click detected");
 
@@ -39,7 +60,11 @@ public class DisassemblyManager : MonoBehaviour
                     if (hit.transform.gameObject == partsToDisassemble[i])
                     {
                         Debug.Log("Clicked on part: " + partsToDisassemble[i].name);
-                        ClickOnPart(i);  // Call the disassembly method for the clicked part
+
+                        // Enable the outline for the clicked part
+                        EnableOutline(i);
+
+                        ClickOnPart(i); // Call the disassembly method for the clicked part
                         break;
                     }
                 }
@@ -48,6 +73,36 @@ public class DisassemblyManager : MonoBehaviour
             {
                 Debug.Log("Raycast did not hit any object");
             }
+        }
+    }
+
+    // Method to enable outline for a selected part
+    void EnableOutline(int partIndex)
+    {
+        Debug.Log("Enabling outline for part: " + partsToDisassemble[partIndex].name);
+
+        // Disable all outlines first
+        for (int i = 0; i < partsToDisassemble.Length; i++)
+        {
+            Outline outlineComponent = partsToDisassemble[i].GetComponent<Outline>();
+            if (outlineComponent != null)
+            {
+                outlineComponent.enabled = false; // Disable outline for all parts
+            }
+        }
+
+        // Enable outline for the selected part
+        Outline selectedOutline = partsToDisassemble[partIndex].GetComponent<Outline>();
+        if (selectedOutline != null)
+        {
+            selectedOutline.enabled = true; // Enable outline for the clicked part
+            Debug.Log("Outline enabled for: " + partsToDisassemble[partIndex].name);
+        }
+        else
+        {
+            Debug.LogWarning(
+                "No outline component found on: " + partsToDisassemble[partIndex].name
+            );
         }
     }
 
@@ -89,6 +144,16 @@ public class DisassemblyManager : MonoBehaviour
             // Move to the next step
             currentStep++;
             Debug.Log("Moved to next step: " + currentStep);
+
+            // Enable the outline for the next part in the array, if available
+            if (currentStep < partsToDisassemble.Length)
+            {
+                EnableOutline(currentStep); // Enable outline for the next part
+            }
+            else
+            {
+                Debug.Log("No more parts to highlight.");
+            }
         }
         else
         {
@@ -106,13 +171,20 @@ public class DisassemblyManager : MonoBehaviour
 
         for (int i = 0; i < partsToDisassemble.Length; i++)
         {
-            partsToDisassemble[i].SetActive(true);   // Reset initial parts
-            partsDisassembled[i].SetActive(false);   // Hide disassembled parts
+            partsToDisassemble[i].SetActive(true); // Reset initial parts
+            partsDisassembled[i].SetActive(false); // Hide disassembled parts
+
+            // Ensure outline component is disabled when resetting
+            Outline outlineComponent = partsToDisassemble[i].GetComponent<Outline>();
+            if (outlineComponent != null)
+            {
+                outlineComponent.enabled = false; // Disable outline
+            }
         }
 
         for (int i = 0; i < AdditionalStep.Length; i++)
         {
-            AdditionalStep[i].SetActive(false);      // Hide all additional steps
+            AdditionalStep[i].SetActive(false); // Hide all additional steps
         }
 
         Debug.Log("Disassembly reset complete");
