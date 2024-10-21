@@ -8,7 +8,7 @@ public class DisassemblyManager : MonoBehaviour
     public GameObject[] partsDisassembled;
     public GameObject[] AdditionalStep; // Objects that appear after disassembling
 
-    private int currentStep = 0; // Track which step we are on
+    public int currentStep = 0; // Track which step we are on
     private int _additionstep = 0;
 
     void Start()
