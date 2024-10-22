@@ -239,6 +239,6 @@ public class DisassemblyManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(elapsedTime / 60); // Convert to minutes
         int seconds = Mathf.FloorToInt(elapsedTime % 60); // Convert to seconds
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // Update timer text
-        TextEnd.text = string.Format("{0:00}:{1:00}", minutes, seconds); // Update timer text
+        TextEnd.text = string.Format("{0:00}:{1:00} Seconds", minutes, seconds); // Update timer text
     }
 }
