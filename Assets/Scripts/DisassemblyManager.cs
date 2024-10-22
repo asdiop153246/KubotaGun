@@ -14,6 +14,7 @@ public class DisassemblyManager : MonoBehaviour
     public GameObject completeScene; // Complete scene object
     public AudioSource _sound;
     public GameObject ingame;
+    public TextMeshProUGUI _ConclusionText;
     public TextMeshProUGUI TextEnd;
     public TextMeshProUGUI timerText; // Timer text display (TextMeshPro)
     private float startTime; // Time when the disassembly starts
@@ -28,7 +29,7 @@ public class DisassemblyManager : MonoBehaviour
         EnableOutline(0); // Enable outline for the first part
         HideAllCheckmarks(); // Ensure all checkmarks are hidden initially
         HideAllDetails(); // Ensure all part details are hidden initially
-        StartTimer(); // Start the timer when the disassembly begins
+        //StartTimer(); // Start the timer when the disassembly begins
     }
 
     void Update()
@@ -194,6 +195,7 @@ public class DisassemblyManager : MonoBehaviour
         {
             completeScene.SetActive(true); // Show complete scene
             StopTimer(); // Stop the timer when disassembly is complete
+            _ConclusionText.text = "Successfully Disassemble M16A1 in";
             TextEnd.gameObject.SetActive(true);
             ingame.SetActive(false);
             timerText.gameObject.SetActive(false);
@@ -220,7 +222,7 @@ public class DisassemblyManager : MonoBehaviour
     }
 
     // Timer methods
-    void StartTimer()
+    public void StartTimer()
     {
         startTime = Time.time;
         isTimerRunning = true;
