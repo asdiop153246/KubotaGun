@@ -4095,7 +4095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -636.99994, y: 220}
+  m_AnchoredPosition: {x: -1130, y: 220}
   m_SizeDelta: {x: 511, y: 487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &929882340
@@ -7845,8 +7845,8 @@ MonoBehaviour:
   additionalSteps:
   - {fileID: 1445825253}
   - {fileID: 5641564400288040904}
-  - {fileID: 1445825253}
   - {fileID: 2268878058863823906}
+  - {fileID: 1445825253}
   stepCheckmarks:
   - {fileID: 1171323267}
   - {fileID: 174510220}
