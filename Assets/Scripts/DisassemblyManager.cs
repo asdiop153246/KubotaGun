@@ -195,7 +195,7 @@ public class DisassemblyManager : MonoBehaviour
         {
             completeScene.SetActive(true); // Show complete scene
             StopTimer(); // Stop the timer when disassembly is complete
-            _ConclusionText.text = "Successfully Disassemble M16A1 in";
+            //_ConclusionText.text = "Successfully Disassemble M16A1 in";
             TextEnd.gameObject.SetActive(true);
             ingame.SetActive(false);
             timerText.gameObject.SetActive(false);
