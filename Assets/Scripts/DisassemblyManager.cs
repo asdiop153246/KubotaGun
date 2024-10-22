@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DisassemblyManager : MonoBehaviour
@@ -11,8 +12,12 @@ public class DisassemblyManager : MonoBehaviour
     public GameObject[] partDetails; // Detail objects to activate on part click
     public GameObject[] PartClick; // Clickable objects to show details
     public GameObject completeScene; // Complete scene object
-
     public AudioSource _sound;
+    public GameObject ingame;
+    public TextMeshProUGUI TextEnd;
+    public TextMeshProUGUI timerText; // Timer text display (TextMeshPro)
+    private float startTime; // Time when the disassembly starts
+    private bool isTimerRunning = false; // Track if the timer is running
 
     public int currentStep = 0; // Track the current step
     private int _additionalStepIndex = 0;
@@ -23,6 +28,7 @@ public class DisassemblyManager : MonoBehaviour
         EnableOutline(0); // Enable outline for the first part
         HideAllCheckmarks(); // Ensure all checkmarks are hidden initially
         HideAllDetails(); // Ensure all part details are hidden initially
+        StartTimer(); // Start the timer when the disassembly begins
     }
 
     void Update()
@@ -30,6 +36,11 @@ public class DisassemblyManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Detect left-click
         {
             DetectClick();
+        }
+
+        if (isTimerRunning)
+        {
+            UpdateTimer(); // Continuously update the timer while it's running
         }
     }
 
@@ -182,6 +193,10 @@ public class DisassemblyManager : MonoBehaviour
         if (currentStep >= partsDisassembled.Length)
         {
             completeScene.SetActive(true); // Show complete scene
+            StopTimer(); // Stop the timer when disassembly is complete
+            TextEnd.gameObject.SetActive(true);
+            ingame.SetActive(false);
+            timerText.gameObject.SetActive(false);
         }
     }
 
@@ -200,6 +215,28 @@ public class DisassemblyManager : MonoBehaviour
         HideAllCheckmarks(); // Hide all checkmarks
         HideAllDetails(); // Hide all details
 
-        EnableOutline(0); // Enable outline for
+        EnableOutline(0); // Enable outline for the first part
+        StartTimer(); // Reset and restart the timer
+    }
+
+    // Timer methods
+    void StartTimer()
+    {
+        startTime = Time.time;
+        isTimerRunning = true;
+    }
+
+    void StopTimer()
+    {
+        isTimerRunning = false;
+    }
+
+    void UpdateTimer()
+    {
+        float elapsedTime = Time.time - startTime; // Calculate elapsed time
+        int minutes = Mathf.FloorToInt(elapsedTime / 60); // Convert to minutes
+        int seconds = Mathf.FloorToInt(elapsedTime % 60); // Convert to seconds
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // Update timer text
+        TextEnd.text = string.Format("{0:00}:{1:00}", minutes, seconds); // Update timer text
     }
 }
