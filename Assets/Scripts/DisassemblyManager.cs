@@ -12,6 +12,8 @@ public class DisassemblyManager : MonoBehaviour
     public GameObject[] PartClick; // Clickable objects to show details
     public GameObject completeScene; // Complete scene object
 
+    public AudioSource _sound;
+
     public int currentStep = 0; // Track the current step
     private int _additionalStepIndex = 0;
 
@@ -135,8 +137,10 @@ public class DisassemblyManager : MonoBehaviour
             }
 
             currentStep++; // Move to the next step
+            _sound.Play();
             HandleAdditionalSteps();
             CheckCompletion();
+
         }
     }
 
