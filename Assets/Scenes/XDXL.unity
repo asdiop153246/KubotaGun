@@ -7843,9 +7843,10 @@ MonoBehaviour:
   - {fileID: 1662064406744047152}
   - {fileID: 3791054355217898785}
   additionalSteps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1445825253}
+  - {fileID: 5641564400288040904}
+  - {fileID: 1445825253}
+  - {fileID: 2268878058863823906}
   stepCheckmarks:
   - {fileID: 1171323267}
   - {fileID: 174510220}
@@ -9401,7 +9402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &7023363467225114745
 GameObject:
   m_ObjectHideFlags: 0
