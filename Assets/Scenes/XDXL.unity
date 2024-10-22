@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee72b9023f9b4c4189fdd70657be6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 13
+  rotationSpeed: 100
   rotateOnY: 0
   rotateOnX: 1
   zoomSpeed: 10
@@ -3956,7 +3956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &800896150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4676,7 +4676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &886039507
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5292,7 +5292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1081121869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6228,7 +6228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee72b9023f9b4c4189fdd70657be6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 13
+  rotationSpeed: 100
   rotateOnY: 1
   rotateOnX: 0
   zoomSpeed: 10
@@ -6924,7 +6924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee72b9023f9b4c4189fdd70657be6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 13
+  rotationSpeed: 100
   rotateOnY: 1
   rotateOnX: 0
   zoomSpeed: 10
@@ -7511,7 +7511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1708837709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8151,7 +8151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1842844286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8370,7 +8370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1889108850
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9673,7 +9673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2134454309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11942,7 +11942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee72b9023f9b4c4189fdd70657be6f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 13
+  rotationSpeed: 100
   rotateOnY: 1
   rotateOnX: 0
   zoomSpeed: 10
