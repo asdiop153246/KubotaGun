@@ -9,7 +9,7 @@ public class DisassemblyManager : MonoBehaviour
     public GameObject[] additionalSteps; // Additional objects for special steps
     public GameObject[] stepCheckmarks; // Checkmarks for completed steps
     public GameObject[] partDetails; // Detail objects to activate on part click
-
+    public GameObject[] PartClick; // Clickable objects to show details
     public GameObject completeScene; // Complete scene object
 
     public int currentStep = 0; // Track the current step
@@ -39,7 +39,8 @@ public class DisassemblyManager : MonoBehaviour
             partsDisassembled[i].SetActive(false);
 
             Outline outline = partsToDisassemble[i].GetComponent<Outline>();
-            if (outline != null) outline.enabled = false;
+            if (outline != null)
+                outline.enabled = false;
         }
     }
 
@@ -66,11 +67,23 @@ public class DisassemblyManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
+            for (int i = 0; i < PartClick.Length; i++)
+            {
+                if (hit.transform.gameObject == PartClick[i])
+                {
+                    // Toggle the visibility of the detail for this part
+                    bool isActive = partDetails[i].activeSelf;
+                    partDetails[i].SetActive(!isActive); // If active, set inactive; if inactive, set active
+                    return; // Exit since we only need to toggle the detail
+                }
+            }
+
+            // Check if the clicked object is a part to disassemble
             for (int i = 0; i < partsToDisassemble.Length; i++)
             {
                 if (hit.transform.gameObject == partsToDisassemble[i])
                 {
-                    ClickOnPart(i);
+                    ClickOnPart(i); // Disassemble the part and handle logic
                     return;
                 }
             }
@@ -83,20 +96,24 @@ public class DisassemblyManager : MonoBehaviour
         foreach (var part in partsToDisassemble)
         {
             Outline outline = part.GetComponent<Outline>();
-            if (outline != null) outline.enabled = false;
+            if (outline != null)
+                outline.enabled = false;
         }
 
         // Enable outline for the selected part
         Outline selectedOutline = partsToDisassemble[partIndex].GetComponent<Outline>();
-        if (selectedOutline != null) selectedOutline.enabled = true;
+        if (selectedOutline != null)
+            selectedOutline.enabled = true;
     }
 
     public void ClickOnPart(int partIndex)
     {
         if (partIndex == currentStep) // Correct part clicked
         {
-            partsToDisassemble[partIndex].SetActive(false);
-            partsDisassembled[partIndex].SetActive(true);
+            partsToDisassemble[partIndex].SetActive(false); // Hide original part
+            partsDisassembled[partIndex].SetActive(true); // Show disassembled part
+
+            // Special handling for different steps
             if (currentStep >= 7 && currentStep != 6 && currentStep != 9)
             {
                 if (currentStep >= 10)
@@ -117,9 +134,7 @@ public class DisassemblyManager : MonoBehaviour
                 ActivateCheckmark(currentStep);
             }
 
-            ShowDetail(partIndex); // Show corresponding detail for the part
-
-            currentStep++;
+            currentStep++; // Move to the next step
             HandleAdditionalSteps();
             CheckCompletion();
         }
@@ -172,12 +187,15 @@ public class DisassemblyManager : MonoBehaviour
         _additionalStepIndex = 0;
 
         // Reset all parts, details, and checkmarks
-        foreach (var part in partsToDisassemble) part.SetActive(true);
-        foreach (var disassembled in partsDisassembled) disassembled.SetActive(false);
-        foreach (var step in additionalSteps) step.SetActive(false);
+        foreach (var part in partsToDisassemble)
+            part.SetActive(true);
+        foreach (var disassembled in partsDisassembled)
+            disassembled.SetActive(false);
+        foreach (var step in additionalSteps)
+            step.SetActive(false);
         HideAllCheckmarks(); // Hide all checkmarks
         HideAllDetails(); // Hide all details
 
-        EnableOutline(0); // Enable outline for the first part
+        EnableOutline(0); // Enable outline for
     }
 }
