@@ -97,8 +97,26 @@ public class DisassemblyManager : MonoBehaviour
         {
             partsToDisassemble[partIndex].SetActive(false);
             partsDisassembled[partIndex].SetActive(true);
+            if (currentStep >= 7 && currentStep != 6 && currentStep != 9)
+            {
+                if (currentStep >= 10)
+                {
+                    ActivateCheckmark(currentStep - 2);
+                }
+                else
+                {
+                    ActivateCheckmark(currentStep - 1);
+                }
+            }
+            else if (currentStep != 6 && currentStep < 7)
+            {
+                ActivateCheckmark(currentStep);
+            }
+            else if (currentStep != 9 && currentStep > 7)
+            {
+                ActivateCheckmark(currentStep);
+            }
 
-            ActivateCheckmark(currentStep); // Activate checkmark for this step
             ShowDetail(partIndex); // Show corresponding detail for the part
 
             currentStep++;
@@ -126,7 +144,7 @@ public class DisassemblyManager : MonoBehaviour
     void HandleAdditionalSteps()
     {
         // Activate additional steps based on the current step
-        if (currentStep == 2 || currentStep == 5)
+        if (currentStep == 3 || currentStep == 6)
         {
             additionalSteps[_additionalStepIndex].SetActive(true);
             _additionalStepIndex++;
